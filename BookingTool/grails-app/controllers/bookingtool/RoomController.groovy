@@ -2,6 +2,7 @@ package bookingtool
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 
 class RoomController {
 
@@ -9,19 +10,23 @@ class RoomController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured('permitAll')
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond roomService.list(params), model:[roomCount: roomService.count()]
     }
 
+    @Secured('permitAll')
     def show(Long id) {
         respond roomService.get(id)
     }
 
+    @Secured(['ROLE_ADMIN'])
     def create() {
         respond new Room(params)
     }
 
+    @Secured(['ROLE_ADMIN'])
     def save(Room room) {
         if (room == null) {
             notFound()
@@ -44,10 +49,12 @@ class RoomController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def edit(Long id) {
         respond roomService.get(id)
     }
 
+    @Secured(['ROLE_ADMIN'])
     def update(Room room) {
         if (room == null) {
             notFound()
@@ -70,6 +77,7 @@ class RoomController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def delete(Long id) {
         if (id == null) {
             notFound()

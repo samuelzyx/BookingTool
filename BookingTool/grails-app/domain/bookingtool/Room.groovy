@@ -7,8 +7,16 @@ package bookingtool
 
 class Room {
     String name
-    //User cretedBy
+    User cretedBy
     Date dateCreation
+
+    Room(String name,
+         Date dateCreation) {
+        this()
+        this.name = name
+        this.dateCreation = dateCreation
+    }
+
     static constraints = {
     }
 }
