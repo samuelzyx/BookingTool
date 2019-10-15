@@ -1,1 +1,1 @@
-# booking-tool
+# BookingTool
