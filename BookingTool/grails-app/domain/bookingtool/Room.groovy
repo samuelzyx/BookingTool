@@ -11,12 +11,13 @@ class Room {
     Date dateCreation
 
     Room(String name,
-         Date dateCreation) {
+        Date dateCreation) {
         this()
         this.name = name
         this.dateCreation = dateCreation
     }
 
     static constraints = {
+        name nullable: false, blank: false, unique: true
     }
 }

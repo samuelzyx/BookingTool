@@ -7,6 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class RoomController {
 
     RoomService roomService
+    def springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -32,6 +33,11 @@ class RoomController {
             notFound()
             return
         }
+
+        def user = springSecurityService.currentUser
+        room.cretedBy = user
+
+        room.dateCreation = new Date()
 
         try {
             roomService.save(room)
@@ -60,6 +66,7 @@ class RoomController {
             notFound()
             return
         }
+
 
         try {
             roomService.save(room)

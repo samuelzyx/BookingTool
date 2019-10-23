@@ -18,7 +18,32 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${roomList}" properties="name, cretedBy, dateCreation"/>
+            <table>
+                <thead>
+                     <tr>
+                         <g:sortableColumn property="id" title="ID" />
+                         <g:sortableColumn property="name" title="Name" />
+                         <g:sortableColumn property="cretedBy" title="Creted By" />
+                         <g:sortableColumn property="dateCreation" title="Date Creation" />
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each status="i" in="${roomList}" var="room">
+                    <!-- Alternate CSS classes for the rows. -->
+                    <tr class="${ (i % 2) == 0 ? 'a' : 'b'}">
+                      <td>${room.id?.encodeAsHTML()}</td>
+                      <td>
+                          <g:link action="show" id="${room.id}">${room.name?.encodeAsHTML()}</g:link>
+                      </td>
+                      <td>${room.cretedBy?.email?.encodeAsHTML()}</td>
+                      <td>
+                          <g:formatDate format="dd-MM-yyyy" date="${room.dateCreation}"/>
+                      </td>
+                    </tr>
+                    </g:each>
+                </tbody>
+            </table>
+            <!-- <f:table collection="${roomList}" properties="name, cretedBy, dateCreation"/> -->
 
             <div class="pagination">
                 <g:paginate total="${roomCount ?: 0}" />

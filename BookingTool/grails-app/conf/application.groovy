@@ -1,6 +1,7 @@
 
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/"
 grails.plugin.springsecurity.logout.filterProcessesUrl = '/api/logout'
+grails.plugin.springsecurity.logout.postOnly = false
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.usernamePropertyName='email'

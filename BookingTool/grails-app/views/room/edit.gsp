@@ -29,7 +29,12 @@
             <g:form resource="${this.room}" method="PUT">
                 <g:hiddenField name="version" value="${this.room?.version}" />
                 <fieldset class="form">
-                    <f:all bean="room"/>
+                    <div class="fieldcontain required">
+                        <label for="name">Name
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" name="name" value="${room?.name}" required="" id="name">
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
