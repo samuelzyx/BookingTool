@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-version "2019.10.14.0.0.1"
+version "2019.10.23.0.0.2"
 group "bookingtool"
 
 apply plugin:"eclipse"

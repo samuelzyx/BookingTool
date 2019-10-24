@@ -11,17 +11,17 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        if (
-        Environment.current == Environment.DEVELOPMENT
+        //if (
+        //Environment.current == Environment.DEVELOPMENT
     //                ||Environment.current == Environment.TEST
-        ) {
+        //) {
             Role RoleAdmin = new Role("ROLE_ADMIN").save()
             Role RoleUser = new Role("ROLE_USER").save()
 
-            User AdminAccount = new User("seda.samuel@tcs.com", "samuels17","Samuel Legaria").save()
+            User AdminAccount = new User("admin@tcs.com", "admin123","Nombre Admin").save()
             UserRole.create(AdminAccount, RoleAdmin, true)
 
-            User UserAccount = new User("zyxsamys@gmail.com", "samuels17","Ivan Seda").save()
+            User UserAccount = new User("user@tcs.com", "user123","Nombre User").save()
             UserRole.create(UserAccount, RoleUser, true)
 
             Room room = new Room("Chennai", new Date())
@@ -35,7 +35,7 @@ class BootStrap {
             room = new Room("Tequila", new Date())
             room.setCretedBy(AdminAccount)
             room.save(flush: true)
-        }
+        //}
     }
     def destroy = {
     }

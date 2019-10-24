@@ -26,7 +26,6 @@
             </ul>
             </g:hasErrors>
             <g:form resource="${this.room}" method="POST">
-
                 <fieldset class="form">
                     <div class="fieldcontain required">
                         <label for="name">Name

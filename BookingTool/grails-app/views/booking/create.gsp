@@ -27,7 +27,36 @@
             </g:hasErrors>
             <g:form resource="${this.booking}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="booking"/>
+                    <div class="fieldcontain required">
+                        <label for="requestByName">Request By Name
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" name="requestByName" value="" required="" id="requestByName">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="requestByEagleId">Request By EAGLE ID
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" name="requestByEagleId" value="" required="" id="requestByEagleId">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="room">Room
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:select name="room" from="${bookingtool.Room.list()}" value="${booking?.room?.id}" optionKey="id" optionValue="name"/>
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="startTime">Start Time
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:datePicker name="startTime" value="${new Date()}" precision="minute"/>
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="endTime">End Time
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:datePicker name="endTime" value="${new Date()}" precision="minute" />
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

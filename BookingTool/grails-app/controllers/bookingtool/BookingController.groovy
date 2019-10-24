@@ -7,6 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class BookingController {
 
     BookingService bookingService
+    def springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -32,6 +33,11 @@ class BookingController {
             notFound()
             return
         }
+
+        def user = springSecurityService.currentUser
+
+        booking.room = Room.get(params.room)
+        booking.owner = user
 
         try {
             bookingService.save(booking)
