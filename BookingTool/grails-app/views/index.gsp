@@ -59,18 +59,22 @@
             <h2>Users created:</h2>
             <p>admin@tcs.com: admin123 <br>user@tcs.com: user123</p>
             <br>
-            <h2>Available Features (V.2019.10.14.0.0.1):</h2>
+            <h2>Available Features (V.<g:meta name="info.app.version"/>):</h2>
             <ul>
                 <li>CRUD booking</li>
+                <li>Login/Logout</li>
+                <li>Security restricted by ROLE_ADMIN, ROLE_USER</li>
+            </ul>
+            <br>
+            <h2>Available Features (V.2019.10.14.0.0.1):</h2>
+            <ul>
                 <li>CRUD rooms</li>
                 <li>First user with ROLE_ADMIN created</li>
                 <li>First user with ROLE_USER created</li>
-                <li>Security restricted by ROLE_ADMIN, ROLE_USER</li>
-                <li>Login/Logout</li>
             </ul>
             <br>
             <p style="text-align: center;">
-                V.2019.10.14.0.0.1
+                V.<g:meta name="info.app.version"/>
             </p>
             <br>
         </div>
