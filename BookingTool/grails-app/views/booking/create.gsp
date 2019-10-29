@@ -18,6 +18,9 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
+            <g:if test="${flash.error}">
+                <div class="errors" role="status">${flash.error}"</div>
+            </g:if>
             <g:hasErrors bean="${this.booking}">
             <ul class="errors" role="alert">
                 <g:eachError bean="${this.booking}" var="error">
@@ -31,13 +34,13 @@
                         <label for="requestByName">Request By Name
                             <span class="required-indicator">*</span>
                         </label>
-                        <input type="text" name="requestByName" value="" required="" id="requestByName">
+                        <input type="text" name="requestByName" value="${booking?.requestByName}" required="" id="requestByName">
                     </div>
                     <div class="fieldcontain required">
                         <label for="requestByEagleId">Request By EAGLE ID
                             <span class="required-indicator">*</span>
                         </label>
-                        <input type="text" name="requestByEagleId" value="" required="" id="requestByEagleId">
+                        <input type="text" name="requestByEagleId" value="${booking?.requestByEagleId}" required="" id="requestByEagleId">
                     </div>
                     <div class="fieldcontain required">
                         <label for="room">Room
@@ -49,13 +52,13 @@
                         <label for="startTime">Start Time
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:datePicker name="startTime" value="${new Date()}" precision="minute"/>
+                        <g:datePicker name="startTime" value="${booking?.startTime?booking?.startTime:new Date()}" precision="hour"/>
                     </div>
                     <div class="fieldcontain required">
                         <label for="endTime">End Time
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:datePicker name="endTime" value="${new Date()}" precision="minute" />
+                        <g:datePicker name="endTime" value="${booking?.endTime?booking?.endTime:new Date()}" precision="hour" />
                     </div>
                 </fieldset>
                 <fieldset class="buttons">

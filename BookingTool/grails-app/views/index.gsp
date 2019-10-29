@@ -61,6 +61,11 @@
             <br>
             <h2>Available Features (V.<g:meta name="info.app.version"/>):</h2>
             <ul>
+                <li>Validation of dates and rooms</li>
+            </ul>
+            <br
+            <h2>Available Features (V.2019.10.23.0.0.2):</h2>
+            <ul>
                 <li>CRUD booking</li>
                 <li>Login/Logout</li>
                 <li>Security restricted by ROLE_ADMIN, ROLE_USER</li>

@@ -22,12 +22,12 @@ class BookingController {
         respond bookingService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['permitAll'])
     def create() {
         respond new Booking(params)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['permitAll'])
     def save(Booking booking) {
         if (booking == null) {
             notFound()
@@ -40,6 +40,24 @@ class BookingController {
         booking.owner = user
 
         try {
+            //Validate if endTime is greater of startTime
+            if(booking.startTime.time >= booking.endTime.time){
+                flash.error = "End Time es menor o igual que Start Time"
+                booking.errors = null
+                respond booking, view: 'create'
+                return
+            }
+
+
+            //Validate if exist one booking at the same time / same room
+            def searching = Booking.findAllByRoomAndStartTimeBetween(booking.room, booking.startTime, booking.endTime);
+            if(searching){
+                flash.error = message(code: 'default.duplicated.message', args: [message(code: 'booking.label', default: 'Booking'), params.id])
+                booking.errors = null
+                respond booking, view: 'create'
+                return
+            }
+
             bookingService.save(booking)
         } catch (ValidationException e) {
             respond booking.errors, view:'create'
@@ -55,12 +73,12 @@ class BookingController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['permitAll'])
     def edit(Long id) {
         respond bookingService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['permitAll'])
     def update(Booking booking) {
         if (booking == null) {
             notFound()
@@ -83,7 +101,7 @@ class BookingController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['permitAll'])
     def delete(Long id) {
         if (id == null) {
             notFound()
